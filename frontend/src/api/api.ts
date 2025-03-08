@@ -17,6 +17,7 @@ const baseQuery = fetchBaseQuery({
       headers.set('x-csrf-token', csrfToken);
     }
 
+
     return headers;
   },
   credentials: 'include'
