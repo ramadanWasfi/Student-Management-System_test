@@ -16,8 +16,8 @@ import { NoticeForm } from '../components';
 
 const initialState: NoticeFormProps = {
   title: '',
-  content: '',
-  status: 0,
+  description: '',
+  status: 1,
   recipientType: 'EV',
   recipientRole: 0,
   firstField: ''
@@ -35,10 +35,12 @@ export const AddNotice = () => {
 
   const onSaveNotice = async (data: NoticeFormProps) => {
     try {
+      console.log('Submitting notice data:', data);
       const result = await addNotice(data).unwrap();
-      toast.info(result.message);
+      toast.success(result.message);
       navigate('/app/notices');
     } catch (error) {
+      console.error('Error saving notice:', error);
       toast.error(getErrorMsg(error as FetchBaseQueryError | SerializedError).message);
     }
   };
